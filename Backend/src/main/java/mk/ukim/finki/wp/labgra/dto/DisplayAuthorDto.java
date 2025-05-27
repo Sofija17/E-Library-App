@@ -1,0 +1,33 @@
+package mk.ukim.finki.wp.labgra.dto;
+
+import mk.ukim.finki.wp.labgra.model.domain.Author;
+import mk.ukim.finki.wp.labgra.model.domain.Country;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public record DisplayAuthorDto(
+        Long id,
+        String name,
+        String surname,
+        Long countryId
+) {
+
+    public static DisplayAuthorDto from (Author author){
+        return new DisplayAuthorDto(
+                author.getId(),
+                author.getName(),
+                author.getSurname(),
+                author.getCountry().getId()
+        );
+    }
+
+    public static List<DisplayAuthorDto> from (List<Author> authors){
+        return authors.stream().map(author -> DisplayAuthorDto.from(author)).collect(Collectors.toList());
+    }
+
+    public Author toAuthor (Country country){
+        return new Author(name,surname,country);
+    }
+
+}

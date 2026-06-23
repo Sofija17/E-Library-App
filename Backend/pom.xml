@@ -9,10 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>mk.ukim.finki.wp</groupId>
-	<artifactId>LabGrA</artifactId>
+	<artifactId>Backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>LabGrA</name>
-	<description>LabGrA</description>
 	<url/>
 	<licenses>
 		<license/>

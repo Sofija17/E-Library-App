@@ -4,7 +4,7 @@ metadata:
   name: e-library-backend
   namespace: e-library
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: e-library-backend

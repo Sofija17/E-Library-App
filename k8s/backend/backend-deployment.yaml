@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-library-backend
+  namespace: e-library
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e-library-backend
+  template:
+    metadata:
+      labels:
+        app: e-library-backend
+    spec:
+      containers:
+        - name: backend
+          image: sofiiija/e-library-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9091
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_DATASOURCE_URL
+                  name: backend-config
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_JPA_HIBERNATE_DDL_AUTO
+                  name: backend-config
+            - name: SPRING_JPA_SHOW_SQL
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_JPA_SHOW_SQL
+                  name: backend-config
+            - name: SERVER_PORT
+              valueFrom:
+                  configMapKeyRef:
+                    key: SERVER_PORT
+                    name: backend-config
+
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: SPRING_DATASOURCE_PASSWORD
+

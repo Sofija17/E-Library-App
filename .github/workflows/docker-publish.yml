@@ -2,6 +2,11 @@ name: Build and Push Docker Images
 
 on:
   push:
+    paths:
+      - 'Backend/**'
+      - 'Frontend/**'
+      - 'docker-compose.yml'
+      - '.github/workflows/**'
     branches:
       - master
 

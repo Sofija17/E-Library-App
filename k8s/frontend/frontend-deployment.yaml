@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-library-frontend
+  namespace: e-library
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e-library-frontend
+  template:
+    metadata:
+      labels:
+        app: e-library-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: sofiiija/e-library-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

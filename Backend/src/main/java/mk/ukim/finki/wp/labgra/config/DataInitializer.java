@@ -31,81 +31,84 @@ public class DataInitializer {
 
     @PostConstruct
     public void init() {
-        Country country1 = new Country("Macedonia", "Europe");
-        Country country2 = new Country("Canada", "North America");
-        Country country3 = new Country("Japan", "Asia");
-        Country country4 = new Country("The Netherlands", "Europe");
-        Country country5 = new Country("Italy", "Europe");
-        Country country6 = new Country("Singapore", "Asia");
-        Country country7 = new Country("Finland", "Europe");
 
-        Author author1 = new Author("Petko", "Petkovski", country1);
-        Author author2 = new Author("John", "Doe", country1);
-        Author author3 = new Author("Bella", "Orr", country2);
-        Author author4 = new Author("Alaric", "Sherman", country2);
-        Author author5 = new Author("Cataleya", "Odom", country1);
-        Author author6 = new Author("Ruben", "Villalobos", country2);
-        Author author7 = new Author("Beau", "Blanchard", country2);
+        if (authorRepository.count() == 0 && bookRepository.count() == 0 && countryRepository.count() == 0) {
 
-        Book book1 = new Book("Book1", Categories.DRAMA, author1, 5);
-        Book book2 = new Book("Book2", Categories.HISTORY, author2, 1);
-        Book book3 = new Book("Book3", Categories.BIOGRAPHY, author1, 13);
-        Book book4 = new Book("Book4", Categories.NOVEL, author1, 23);
-        Book book5 = new Book("Book5", Categories.FANTASY, author1, 53);
-        Book book6 = new Book("Book6", Categories.CLASSICS, author1, 23);
-        Book book7 = new Book("Book7", Categories.THRILER, author1, 17);
+            Country country1 = new Country("Macedonia", "Europe");
+            Country country2 = new Country("Canada", "North America");
+            Country country3 = new Country("Japan", "Asia");
+            Country country4 = new Country("The Netherlands", "Europe");
+            Country country5 = new Country("Italy", "Europe");
+            Country country6 = new Country("Singapore", "Asia");
+            Country country7 = new Country("Finland", "Europe");
 
+            Author author1 = new Author("Petko", "Petkovski", country1);
+            Author author2 = new Author("John", "Doe", country1);
+            Author author3 = new Author("Bella", "Orr", country2);
+            Author author4 = new Author("Alaric", "Sherman", country2);
+            Author author5 = new Author("Cataleya", "Odom", country1);
+            Author author6 = new Author("Ruben", "Villalobos", country2);
+            Author author7 = new Author("Beau", "Blanchard", country2);
 
-        List<Book> list1 = List.of(book1);
-
-        countryRepository.save(country1);
-        countryRepository.save(country2);
-        countryRepository.save(country3);
-        countryRepository.save(country4);
-        countryRepository.save(country5);
-        countryRepository.save(country6);
-        countryRepository.save(country7);
+            Book book1 = new Book("Book1", Categories.DRAMA, author1, 5);
+            Book book2 = new Book("Book2", Categories.HISTORY, author2, 1);
+            Book book3 = new Book("Book3", Categories.BIOGRAPHY, author1, 13);
+            Book book4 = new Book("Book4", Categories.NOVEL, author1, 23);
+            Book book5 = new Book("Book5", Categories.FANTASY, author1, 53);
+            Book book6 = new Book("Book6", Categories.CLASSICS, author1, 23);
+            Book book7 = new Book("Book7", Categories.THRILER, author1, 17);
 
 
-        authorRepository.save(author1);
-        authorRepository.save(author2);
-        authorRepository.save(author3);
-        authorRepository.save(author4);
-        authorRepository.save(author5);
-        authorRepository.save(author6);
-        authorRepository.save(author7);
+            List<Book> list1 = List.of(book1);
 
-        bookRepository.save(book1);
-        bookRepository.save(book2);
-        bookRepository.save(book3);
-        bookRepository.save(book4);
-        bookRepository.save(book5);
-        bookRepository.save(book6);
-        bookRepository.save(book7);
+            countryRepository.save(country1);
+            countryRepository.save(country2);
+            countryRepository.save(country3);
+            countryRepository.save(country4);
+            countryRepository.save(country5);
+            countryRepository.save(country6);
+            countryRepository.save(country7);
 
-        userRepository.save(new User(
-                "user",
-                passwordEncoder.encode("user"),
-                "user",
-                "user",
-                Role.ROLE_USER
-        ));
 
-        User sofija = new User(
-                "Sofija",
-                passwordEncoder.encode("sofija"),
-                "Sofija",
-                "Kitanovikj",
-                Role.ROLE_LIBRARIAN
-        );
-        userRepository.save(sofija);
+            authorRepository.save(author1);
+            authorRepository.save(author2);
+            authorRepository.save(author3);
+            authorRepository.save(author4);
+            authorRepository.save(author5);
+            authorRepository.save(author6);
+            authorRepository.save(author7);
 
-        Wishlist wishlist = new Wishlist();
-        wishlist.setUser(sofija);
-        wishlist.setBooks(List.of(book1, book2));
-        userRepository.save(sofija);
+            bookRepository.save(book1);
+            bookRepository.save(book2);
+            bookRepository.save(book3);
+            bookRepository.save(book4);
+            bookRepository.save(book5);
+            bookRepository.save(book6);
+            bookRepository.save(book7);
 
-        wishlistRepository.save(wishlist);
+            userRepository.save(new User(
+                    "user",
+                    passwordEncoder.encode("user"),
+                    "user",
+                    "user",
+                    Role.ROLE_USER
+            ));
+
+            User sofija = new User(
+                    "Sofija",
+                    passwordEncoder.encode("sofija"),
+                    "Sofija",
+                    "Kitanovikj",
+                    Role.ROLE_LIBRARIAN
+            );
+            userRepository.save(sofija);
+
+            Wishlist wishlist = new Wishlist();
+            wishlist.setUser(sofija);
+            wishlist.setBooks(List.of(book1, book2));
+            userRepository.save(sofija);
+
+            wishlistRepository.save(wishlist);
+        }
     }
-
 }
